@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>标签 - lybbor&#39;s blog</title>
+  <title>博弈练题 - lybbor&#39;s blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  
+  <meta name="description" content="zser曰：“欲解博弈，无非四也，找对称点，sg，打表...">
   <meta name="author" content="lybbor">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
@@ -135,7 +135,7 @@
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
       
     </div>
-    <div class="center">标签</div>
+    <div class="center">博弈练题</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -158,7 +158,7 @@
       </li><li class="menu-item">
         <a href="/archives/ " class="underline "> 归档</a>
       </li><li class="menu-item">
-        <a href="/tags/ " class="underline active"> 标签</a>
+        <a href="/tags/ " class="underline "> 标签</a>
       </li><li class="menu-item">
         <a href="/categories/ " class="underline "> 分类</a>
       </li><li class="menu-item">
@@ -170,15 +170,72 @@
   </div>
 </nav>
   <main id="main">
-  <section class="tags">
-    <header class="header">
-  <h1 class="header-title">标签</h1>
-  <p class="header-subtitle">共: 1 个</p>
-</header>
-    <div class="tags-container">
-      <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 14px; color: #666">算法</a>
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://c-ssl.duitang.com/uploads/item/202009/20/20200920065604_wxdah.thumb.1000_0.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">博弈练题</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 08, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>712</span>
     </div>
-  </section>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        </p>
+<hr>
+<hr>
+<h2 id="【1】牛客：小乐乐吃糖豆"><a href="#【1】牛客：小乐乐吃糖豆" class="headerlink" title="【1】牛客：小乐乐吃糖豆"></a><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/problem/21554">【1】牛客：小乐乐吃糖豆</a></h2><p><strong>思路：</strong></p>
+<blockquote>
+<p> 打表可发现规律是斐波拉契~</p>
+</blockquote>
+<p><strong>AC代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>  <span class="hljs-meta-string">&quot;stdio.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>  <span class="hljs-meta-string">&quot;iostream&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;<br>ll f[<span class="hljs-number">1010</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    f[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;<br>    f[<span class="hljs-number">1</span>]=<span class="hljs-number">2</span>;<br>    f[<span class="hljs-number">2</span>]=<span class="hljs-number">3</span>;<br>    f[<span class="hljs-number">3</span>]=<span class="hljs-number">5</span>;<br>    ll flag=<span class="hljs-number">1</span>;<span class="hljs-comment">/*小乐乐必胜*/</span><br>    <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">4</span>;i&lt;=<span class="hljs-number">20</span>;i++)&#123;<br>        f[i]=f[i<span class="hljs-number">-1</span>]+f[i<span class="hljs-number">-2</span>];<br>    &#125;<br>    ll n;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">20</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(f[i]==n)&#123;<br>            flag=<span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(flag)<br>        <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;Small&quot;</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;Big&quot;</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>lybbor</li>
+    <!-- <li><strong>本文链接：</strong><a href="http://example.com/2020/12/08/%E5%8D%9A%E5%BC%88%E7%BB%83%E9%A2%98/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2020&#x2F;12&#x2F;08&#x2F;%E5%8D%9A%E5%BC%88%E7%BB%83%E9%A2%98&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2020&#x2F;12&#x2F;08&#x2F;%E5%8D%9A%E5%BC%88%E7%BB%83%E9%A2%98&#x2F;index.html</a></li> -->
+    <li><strong>版权声明：</strong>本博客所有文章均采用 
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2020/12/06/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B8%93%E6%A0%8F/">贪心算法练题<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%901%E3%80%91%E7%89%9B%E5%AE%A2%EF%BC%9A%E5%B0%8F%E4%B9%90%E4%B9%90%E5%90%83%E7%B3%96%E8%B1%86"><span class="toc-text">【1】牛客：小乐乐吃糖豆</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
 </main>
   
 

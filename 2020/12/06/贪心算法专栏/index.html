@@ -1,233 +1,392 @@
+
+
 <!DOCTYPE html>
-<html>
-  <!-- Html Head Tag-->
-  <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
+<html lang="UTF-8" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>贪心算法练题 - lybbor&#39;s blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="还不够贪！！ 
+
+
+【1】牛客：装进肚子题目描述：
+
+...">
   <meta name="author" content="lybbor">
+  <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/favicon-16x16.ico" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/favicon-16x16.ico" color="#333333">
   
-  
-  <!-- Open Graph Data -->
-  <meta property="og:title" content="贪心算法练题"/>
-  <meta property="og:description" content="" />
-  <meta property="og:site_name" content="lybbor&#39;s blog"/>
-  <meta property="og:type" content="article" />
-  <meta property="og:image" content="http://example.com"/>
-  
-    <link rel="alternate" href="/atom.xml" title="lybbor&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/img/favicon.ico">
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-16x16.ico">
+    <meta rel="msapplication-TileColor" content="#000000">
   
 
-  <!-- Site Title -->
-  <title>lybbor's blog</title>
-
-  <!-- Bootstrap CSS -->
-  
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-
-  
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <!-- Custom CSS -->
   
 <link rel="stylesheet" href="/css/style.css">
 
 
-  <!-- Google Analytics -->
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+
   
 
-  <!-- BaiDu Analytics -->
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
   
 
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
 
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: false,
+        alipay: '',
+        wechat: ''
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '/images/theme/welcome-image.jpg',
+          api: ''
+        },
+        motto: {
+          default: '嗝儿',
+          api: '',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      }
+    }
+  </script>
+
+  
+
+  
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
-  <body>
-    <!-- Page Header -->
+<body class="lock-screen">
+  <div class="loading"></div>
+  
 
 
-<nav class="navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse site-menu">
-            <ul class="nav navbar-nav navbar-right">
-                
-                    <li>
-                        <a href="/">
-                            
-                                Home
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives">
-                            
-                                Archives
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/about">
-                            
-                                About
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="mailto:<rz1156202084@qq.com>">
-                            
-                                Email
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a target="_blank" rel="noopener" href="https://github.com/lybbor">
-                            
-                                <i class="icon fa fa-github fa-lg"></i>
-                            
-                        </a>
-                    </li>
-                
-            </ul>
-        </div>
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
     </div>
-</nav>
+    <div class="center">贪心算法练题</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
 
-<!-- Header -->
-<header class="site-header header-background intro-header" style="background-image: url(/img/default-banner.jpg)">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="page-title with-background-image">
-          <p class="title">贪心算法练题</p>
-          <p class="subtitle"></p>
-        </div>
-      </div>
+  
+
+<nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p>peach's love</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3244575828,1597535185&fm=26&gp=0.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">贪心算法练题</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 06, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1954</span>
     </div>
   </div>
-</header>
-
-<article>
-  <div class="container typo">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-info text-muted">
-          
-            <!-- Author -->
-            <span class="author info">By lybbor</span>
-          
-          <!-- Date -->
-          <span class="date-time info">On
-            <span class="date">2020-12-06T19:48:30+08:00</span>
-            <!--<span class="date">2020-12-06</span>
-            <span class="time">11:30:48</span> -->
-          </span>
-          
-        </div>
-        <!-- Tags -->
-        
-          <div class="post-tags text-muted">
-            Tags: 
-
-<a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
-
-
-          </div>
-        
-        <!-- Post Main Content -->
-        <div class="post-content">
-          <hr>
-<p><strong><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/problem/14721">【1】牛客：装进肚子</a></strong></p>
+</section>
+    <section class="main">
+      <section class="content">
+        </p>
+<hr>
+<hr>
+<h2 id="【1】牛客：装进肚子"><a href="#【1】牛客：装进肚子" class="headerlink" title="【1】牛客：装进肚子"></a><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/problem/14721">【1】牛客：装进肚子</a></h2><p><strong>题目描述：</strong></p>
+<blockquote>
+<p>自从ZZZZone吃完糖果后，他开始改吃巧克力了，他每天想吃n个巧克力增在甜蜜值，他决定早上吃K个巧克力，晚上吃n - K个巧克力，每个巧克力在早上吃和在晚上吃的甜蜜值是不一样的，他想让自己得到的甜蜜值最大，并想知道最大是多少。请你编程帮助他。</p>
+</blockquote>
+<p><strong>输入描述：</strong></p>
+<blockquote>
+<p>第一行包含两个数n，K表示每天要吃的巧克力数量和要在早上吃的数量。（n &lt;= 100000, K &lt;= n)<br>第二行包含n个整数Ai（1 &lt;= i &lt;= n) 表示个第i个巧克力在早上吃可得到的甜蜜值 (Ai &lt;= 100000)<br>第三行包含n个整数Bi（1 &lt;= i &lt;= n) 表示个第i个巧克力在晚上吃可得到的甜蜜值 (Bi &lt;= 100000)</p>
+</blockquote>
+<p><strong>输出描述：</strong></p>
+<blockquote>
+<p>输出仅一行包含一个整数表示ZZZZone能获得的最大甜蜜值。</p>
+</blockquote>
+<hr>
+<p><strong>输入：</strong></p>
+<blockquote>
+<p>2 1<br>3 6<br>2 8</p>
+</blockquote>
+<p><strong>输出：</strong></p>
+<blockquote>
+<p>11</p>
+</blockquote>
+<hr>
 <p><strong>思路：</strong></p>
 <blockquote>
 <p>假设每一块都是早上吃，那么要拿一块来晚上吃就需要-a[i]+b[i]，即为b[i]-a[i],那么对b[i]-a[i]由大到小排序，前n-k个就是晚上需要吃掉的糖果了。</p>
 </blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="comment">//结构体排序</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sug</span>&#123;</span></span><br><span class="line">    ll day,nit;</span><br><span class="line">&#125;sugs[<span class="number">100100</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(sug a,sug b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a.day-a.nit)&gt;(b.day-b.nit);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll n,k,ans;</span><br><span class="line">    ans=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>,&amp;n,&amp;k);</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld %lld&quot;</span>,&amp;sugs[i].day,&amp;sugs[i].nit);</span><br><span class="line">    &#125;</span><br><span class="line">    sort(sugs,sugs+n,cmp1);</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">            ans+=sugs[i].day;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(ll i=k;i&lt;n;i++)&#123;</span><br><span class="line">        ans+=sugs[i].nit;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>AC代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;<br><span class="hljs-comment">/*结构体排序*/</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sug</span>&#123;</span><br>    ll day,nit;<br>&#125;sugs[<span class="hljs-number">100100</span>];<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cmp1</span><span class="hljs-params">(sug a,sug b)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> (a.day-a.nit)&gt;(b.day-b.nit);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    ll n,k,ans;<br>    ans=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld%lld&quot;</span>,&amp;n,&amp;k);<br>    <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld %lld&quot;</span>,&amp;sugs[i].day,&amp;sugs[i].nit);<br>    &#125;<br>    sort(sugs,sugs+n,cmp1);<br>    <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>            ans+=sugs[i].day;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(ll i=k;i&lt;n;i++)&#123;<br>        ans+=sugs[i].nit;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><em>感谢我zser大佬的讲解～</em></p>
-
-        </div>
-        <!-- Comments -->
+<hr>
+<hr>
+<h2 id="【2】牛客：合并石子"><a href="#【2】牛客：合并石子" class="headerlink" title="【2】牛客：合并石子"></a><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/9667/F">【2】牛客：合并石子</a></h2><p><strong>思路：</strong></p>
+<blockquote>
+<p>灰常简单的一个题，不过刚开始被我想复杂了，其实就是要留下最大的，拿最大的跟其他的数相加，最后列出样例的算式为：(5+1)+(5+3)+(5+5)+(5+2)=31，假设max为最大的数，sum为所以数的和，即为max*(n-2)+sum；</p>
+</blockquote>
+<p><strong>AC代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>  <span class="hljs-meta-string">&quot;stdio.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>  <span class="hljs-meta-string">&quot;iostream&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;<br>ll n,m;<br>ll maxx=<span class="hljs-number">0</span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;n;<br>    ll sum=<span class="hljs-number">0</span>;<br>    ll ans=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-built_in">cin</span>&gt;&gt;m;<br>        sum+=m;<br>        <span class="hljs-keyword">if</span>(m&gt;maxx)&#123;<br>            maxx=m;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">/*cout&lt;&lt;&quot;sum=&quot;&lt;&lt;sum&lt;&lt;endl;</span><br><span class="hljs-comment">    cout&lt;&lt;&quot;maxx=&quot;&lt;&lt;maxx&lt;&lt;endl;*/</span><br>    ans=maxx*(n<span class="hljs-number">-2</span>)+sum;<br>    <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
         
-    
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>lybbor</li>
+    <!-- <li><strong>本文链接：</strong><a href="http://example.com/2020/12/06/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B8%93%E6%A0%8F/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2020&#x2F;12&#x2F;06&#x2F;%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B8%93%E6%A0%8F&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2020&#x2F;12&#x2F;06&#x2F;%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B8%93%E6%A0%8F&#x2F;index.html</a></li> -->
+    <li><strong>版权声明：</strong>本博客所有文章均采用 
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul> 
 
-    
+        
+  <nav class="nav">
+    <a href="/2020/12/08/%E5%8D%9A%E5%BC%88%E7%BB%83%E9%A2%98/"><i class="iconfont iconleft"></i>博弈练题</a>
+    <a href="/2020/11/30/hello-world/">Hello World<i class="iconfont iconright"></i></a>
+  </nav>
 
-    
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%901%E3%80%91%E7%89%9B%E5%AE%A2%EF%BC%9A%E8%A3%85%E8%BF%9B%E8%82%9A%E5%AD%90"><span class="toc-text">【1】牛客：装进肚子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%902%E3%80%91%E7%89%9B%E5%AE%A2%EF%BC%9A%E5%90%88%E5%B9%B6%E7%9F%B3%E5%AD%90"><span class="toc-text">【2】牛客：合并石子</span></a></li></ol>
+  </aside>
 
-    
-
-    
-
-    
-
-
+        
       </div>
     </div>
   </div>
-</article>
+</main>
+  
 
-
-
-    
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <p class="copyright text-muted">
-        &copy;  2020
-        <span class="with-love">
-            <i class="fa fa-heart"></i>
-        </span>
-        <span class="author">lybbor</span>
-        <p class="copyright text-muted">
-          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
-        </p>
-        <p class="copyright text-muted">
-          peach's love
-        </p>
-
-        <!--  -->
-
-        <!-- 
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <p class="visit-statistics">
-            <span id="busuanzi_container_site_pv">
-              本站总访问：<span id="busuanzi_value_site_pv"></span>次
-              &nbsp;&nbsp;&nbsp;&nbsp;
-            </span>
-        <p>
-         -->
-      </div>
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1156202084 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/lybbor "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:rz1156202084@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p>peach's love</p>
     </div>
-  </div>
+  
 </footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 
 
-    <!-- After Footer Scripts -->
 
-<script src="/js/highlight.pack.js"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
-    codeBlocks.forEach(function(block, index) {
-      hljs.highlightBlock(block);
-    });
-  });
-</script>
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
 
 
 
-  </body>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </html>
-
