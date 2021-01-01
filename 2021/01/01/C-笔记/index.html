@@ -12,7 +12,9 @@
   <meta name="google" content="notranslate" />
   
   <meta name="description" content="每日学习小笔记 
-">
+
+
+2021.01.01作用域::双...">
   <meta name="author" content="lybbor">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
@@ -183,13 +185,52 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 01, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>9</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2371</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         </p>
+<hr>
+<hr>
+<h2 id="2021-01-01"><a href="#2021-01-01" class="headerlink" title="2021.01.01"></a>2021.01.01</h2><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>::双冒号作用域运算符<br>全局作用域，直接加::</p>
+<blockquote>
+<p>记得以前老师说过可以把::看作‘的’</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _CRT_SECURE_NO_WARNINGS </span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">int</span> atk = <span class="hljs-number">200</span>; <br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> atk = <span class="hljs-number">100</span>;<br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;atk=&quot;</span> &lt;&lt; ::atk &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	test1();<br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;hello &quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br> <br></code></pre></td></tr></table></figure>
+<p>输出为全局作用域下中的atk</p>
+<blockquote>
+<p>atk=200</p>
+</blockquote>
+<hr>
+<h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><blockquote>
+<p>namespace主要解决命名冲突问题</p>
+</blockquote>
+<ol>
+<li>命名空间下可以放函数、变量、结构体、类。</li>
+<li>命名空间必须定义在全局作用域下。</li>
+<li>命名空间可以嵌套命名空间<del>（禁止套娃！）</del></li>
+<li>命名空间是开放的，可以随时向原来的命名空间添加内容</li>
+<li>匿名/无名命名空间（类似于static，其成员函数只能在当前文件使用）</li>
+<li>命名空间可以起别名</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;game1.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;game2.h&quot;</span></span><br><br><span class="hljs-comment">//namespace主要解决命名冲突问题</span><br><br><span class="hljs-comment">//1.命名空间下可以放函数、变量、结构体、类</span><br><span class="hljs-keyword">namespace</span> A &#123;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span></span>;<br>	<span class="hljs-keyword">int</span> a=<span class="hljs-number">20</span>;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">person</span></span><br><span class="hljs-class">	&#123;</span><br><br>	&#125;;<br>	<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">animal</span> &#123;</span>&#125;;<br>	<span class="hljs-keyword">namespace</span> B &#123;<br>		<span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test02</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;作用域B下的A：&quot;</span> &lt;&lt; A::B::a &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br><br><span class="hljs-comment">//2.命名空间必须定义在全局作用域下</span><br><span class="hljs-comment">//3.命名空间可以嵌套命名空间</span><br><span class="hljs-comment">//4.命名空间是开放的，可以随时向原来的命名空间添加内容</span><br><span class="hljs-keyword">namespace</span> A &#123;<span class="hljs-comment">//此A命名空间会和上面的A命名空间进行合并</span><br>	<span class="hljs-keyword">int</span> b = <span class="hljs-number">100</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test03</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;A::下的A为：&quot;</span> &lt;&lt; A::a &lt;&lt; <span class="hljs-string">&quot;B为：&quot;</span> &lt;&lt; A::b &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br><br><span class="hljs-comment">//5.匿名/无名命名空间</span><br><span class="hljs-keyword">namespace</span>  &#123;<br>	<span class="hljs-keyword">int</span> c = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">int</span> d = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//当写了无名命名空间相当于写了static int c ,static int d ，静态变量</span><br><span class="hljs-comment">//只能在当前文件内使用</span><br><span class="hljs-comment">//6.命名空间可以取别名</span><br><br><span class="hljs-keyword">namespace</span> verylongname &#123;<br>	<span class="hljs-keyword">int</span> a = <span class="hljs-number">123</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test04</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-comment">//起别名</span><br>	<span class="hljs-keyword">namespace</span> vln= verylongname;<br>	<span class="hljs-built_in">cout</span> &lt;&lt; vln::a &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	test04();<br>	kg::goAtk();<br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="using声名和using编译指令"><a href="#using声名和using编译指令" class="headerlink" title="using声名和using编译指令"></a>using声名和using编译指令</h3><h4 id="using-声名"><a href="#using-声名" class="headerlink" title="using 声名"></a>using 声名</h4><blockquote>
+<p>编译器就近原则和using会导致二义性<br>要避免二义性问题</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">namespace</span> KG&#123;<br>	<span class="hljs-keyword">int</span> swk = <span class="hljs-number">10</span>;<br><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test01</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> swk = <span class="hljs-number">20</span>;<br>	<span class="hljs-comment">//using KG::swk;</span><br>	<span class="hljs-comment">//加上这个声名会出现多次声名error，也就是二义性</span><br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;swk=&quot;</span> &lt;&lt; swk &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h4 id="using-编译指令"><a href="#using-编译指令" class="headerlink" title="using 编译指令"></a>using 编译指令</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> xxxx;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>与局部变量重名时，则会覆盖命名空间中的同名成员，而不会报错（避免了二义性）<br><strong>但是如果同时using了多个namespace，也会出现二义性！</strong></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">namespace</span> LOL &#123;<br>	<span class="hljs-keyword">int</span> swk = <span class="hljs-number">30</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test02</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-comment">//int swk = 20;</span><br>	<span class="hljs-comment">//using 编译指令</span><br>	<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> KG;<span class="hljs-comment">//打开房间，避免二义性</span><br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;swk=&quot;</span> &lt;&lt; swk &lt;&lt; <span class="hljs-built_in">endl</span>;<br>	<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> LOL;<br>	<span class="hljs-comment">//如果打开多个房间，也要避免二义性</span><br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;swk=&quot;</span> &lt;&lt; LOL::swk &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="C-对C语言的加强"><a href="#C-对C语言的加强" class="headerlink" title="C++对C语言的加强"></a>C++对C语言的加强</h3>
       </section>
       <section class="extra">
         
@@ -222,7 +263,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2021-01-01"><span class="toc-text">2021.01.01</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#namespace"><span class="toc-text">namespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#using%E5%A3%B0%E5%90%8D%E5%92%8Cusing%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4"><span class="toc-text">using声名和using编译指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E5%AF%B9C%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8A%A0%E5%BC%BA"><span class="toc-text">C++对C语言的加强</span></a></li></ol></li></ol>
   </aside>
 
         
