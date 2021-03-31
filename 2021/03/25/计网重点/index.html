@@ -182,7 +182,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 25, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>372</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2961</span>
     </div>
   </div>
 </section>
@@ -254,6 +254,35 @@
 <p>C向S发送ACK最大用1MSL，如果报文丢失了，S会重新发送FIN，最大也是花费1MSL，所以要等如果2MSL内S没有再次发送FIN，则说明C可以顺利关闭。</p>
 </blockquote>
 <h3 id="MSL可以修改吗？"><a href="#MSL可以修改吗？" class="headerlink" title="MSL可以修改吗？"></a>MSL可以修改吗？</h3><p><strong>可以。</strong></p>
+<h1 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h1><blockquote>
+<p>TCP和UDP都是位于传输层的协议。<br>很棒的参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hansionz/article/details/86435127?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161684967816780357277911%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=161684967816780357277911&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-86435127.first_rank_v2_pc_rank_v29&amp;utm_term=TCP+UDP">https://blog.csdn.net/hansionz/article/details/86435127?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161684967816780357277911%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=161684967816780357277911&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-86435127.first_rank_v2_pc_rank_v29&amp;utm_term=TCP+UDP</a></p>
+</blockquote>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>TCP协议报文格式：<br><img   class="lazyload" data-original="https://img-blog.csdnimg.cn/20190114091108494.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbnNpb256,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h3 id="各字段的意义"><a href="#各字段的意义" class="headerlink" title="各字段的意义"></a>各字段的意义</h3><p>（对于报文中都熟悉的地方不多说了。）<br><strong>4位首部长度/数据偏移：</strong><br>占4位，它指出TCP报文段的数据起始处距离TCP报文段的起始处有多远。这个字段实际上是指出TCP报文段的首部长度。由于首部中还有长度不确定的选项字段，因此数据偏移字段是必要的。但应注意，“数据偏移”的单位是<strong>32位字</strong>（即以4字节长的字为计算单位）。由于4位二进制数能够表示的最大十进制数字是15，因此数据偏移的最大值是60字节，这也是TCP首部的最大长度（即选项字段长度不能超过40字节）。<br>15*4=60字节。<br>15*32=480位；1字节=8位；∴480/8=60位；</p>
+<p><strong>16位的紧急指针：</strong><br>按序到达是TCP协议保证可靠性的一种机制，但是也存在一些报文想优先被处理，这时就可以设置紧急指针，指向该报文即可，同时将紧急指针有效位置位1。</p>
+<p><strong>16位窗口大小：</strong><br>如果发送方发送大量数据，接收方接收不过来，会导致大量数据丢失。然后接收方可以发送给发送发消息让发送方发慢一点，这是流量控制。接收方将自己接收缓冲器剩余空间的大小告诉发送方叫做16位窗口大小。发送发可以根据窗口大小来适配发送的速度和大小，窗口大小最大是2的16次方，及64KB，但也可以根据选项中的某些位置扩展，最大扩展1G。</p>
+<p><strong>16位校验和：</strong><br>发送端填充，CRC校验。如果接收端校验不通过， 则认为数据有问题(此处的检验和不光包含TCP首部也包含TCP数据部分)。</p>
+<p><strong>选项</strong>：<br>长度可变，最长可达40字节。当没有使用“选项”时，TCP的首部长度是20字节。<br>TCP最初只规定了一种选项，即最大报文段长度MSS(Maximum Segment Size)。MSS是每一个TCP报文段中数据字段的最大长度。数据字段加上TCP首部才等于整个的TCP报文段。所以，MSS并不是整个TCP报文段的最大长度，而是“TCP报文段长度减去TCP首部长度”。</p>
+<p><strong>为什么要规定一个最大报文长度MSS呢？</strong><br>这并不是考虑接受方的接收缓存可能存放不下TCP报文段中的数据。实际上，MSS与接收窗口值没有关系。我们知道，TCP报文段的数据部分，至少要加上40字节的首部（TCP首部20字节和IP首部20字节，这里还没有考虑首部中的可选部分）才能组装成一个IP数据报。若选择较小的MSS长度，网络的利用率就降低。设想在极端情况下，当TCP报文段只含有1字节的数据时，在IP层传输的数据报的开销至少有40字节（包括TCP报文段的首部和IP数据报的首部）。这样，对网络的利用率就不会超过1/41。到了数据链路层还要加上一些开销。但反过来，若TCP报文段非常长，那么在IP层传输时就有可能要分解成多个短数据报片。在终点要把收到的各个短数据报片组成成原来的TCP报文段，当传输出错时还要进行重传，这些也都会使开销增大。<br>因此，MSS应尽可能大些，只要在IP层传输时不需要分片就行。由于IP数据报所经历的路径是动态变化的，因此在这条路径上确定的不需要的分片的MSS，如果改走另一条路径就可能需要进行分片。因此最佳的MSS是很难确定的。在连接过程中，双方都把自己能够支持的MSS写入这一字段，以后就按照这个数值传输数据，两个传送方向可以有不同的MSS值。若主机未填写这一项，则MSS的默认值是536字节长。因此，所有在互联网上的主机都应该接受的报文段长度是536+20（固定首部长度）=556字节。</p>
+<blockquote>
+<p>TCP报文格式参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32998153/article/details/79680704">https://blog.csdn.net/qq_32998153/article/details/79680704</a></p>
+</blockquote>
+<h3 id="1-面向连接"><a href="#1-面向连接" class="headerlink" title="1.面向连接"></a>1.面向连接</h3><p>三次握手建立连接</p>
+<h3 id="2-可靠"><a href="#2-可靠" class="headerlink" title="2.可靠"></a>2.可靠</h3><p>32位序号：序号是可靠传输的关键因素。TCP将要传输的每个字节都进行了编号，序号是本报文段发送的数据组的第一个字节的编号，序号可以保证传输信息的有效性。<br>传输数据过程中，还加入了超时重传机制。假设主机A发送数据给主机B，主机B没有收到数据包，主机B自然就不会应答，如果主机A在一个特定时间间隔内没有收到主机B发来的确认应答，就会进行重发，这就是超时重传机制。</p>
+<h3 id="3-面向字节流"><a href="#3-面向字节流" class="headerlink" title="3.面向字节流"></a>3.面向字节流</h3><h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p>UDP协议报文格式：<br><img   class="lazyload" data-original="https://img-blog.csdnimg.cn/2019011408200190." src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h3 id="1-面向无连接"><a href="#1-面向无连接" class="headerlink" title="1. 面向无连接"></a>1. <strong>面向无连接</strong></h3><blockquote>
+<p>只需要对端的IP和端口号就可以，不需要建立连接。</p>
+</blockquote>
+<h3 id="2-不可靠"><a href="#2-不可靠" class="headerlink" title="2. 不可靠"></a>2. <strong>不可靠</strong></h3><blockquote>
+<p>没有确认机制和重传机制（就是因为没有连接），丢包了也不会返回错误提示。</p>
+</blockquote>
+<h3 id="3-面向数据报-报文"><a href="#3-面向数据报-报文" class="headerlink" title="3. 面向数据报/报文"></a>3. <strong>面向数据报/报文</strong></h3><blockquote>
+<p> 应用层交给UDP多长的报文， UDP原样发送既不会拆分，也不会合并。<br>如果发送端调用一次sendto, 发送100个字节, 那么接收端也必须调用对应的一次recvfrom, 接收100个 字节，而不能循环调用10次recvfrom, 每次接收10个字节。所以UDP不能够灵活的控制读写数据的次数和数量。</p>
+</blockquote>
+<p>UDP是一种<strong>全双工通信协议</strong>。 UDP协议首部中有一个16位的大长度. 也就是说一个UDP能传输的报文长度是64K(包含UDP首部)。如果我们需要传输的数据超过64K, 就需要在<strong>应用层手动分包</strong>, 多次发送, 并在<strong>接收端手动拼装</strong>。</p>
+<h3 id="4-缓冲区"><a href="#4-缓冲区" class="headerlink" title="4. 缓冲区"></a>4. <strong>缓冲区</strong></h3><blockquote>
+<p>有接收缓冲区，没有发送缓冲区。<br>因为UDP不保证可靠性，它没有重传机制，当报文丢失时，UDP不需要重新发送。<br>（压根不管丢没丢，发出去就完事了，所以没有发送缓冲区，只管发出去，就算丢了也不用再次发。）</p>
+</blockquote>
       </section>
       <section class="extra">
         
@@ -272,7 +301,7 @@
 
         
   <nav class="nav">
-    <a></a>
+    <a href="/2021/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="iconfont iconleft"></i>操作系统笔记</a>
     <a href="/2021/03/25/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F/">经典排序<i class="iconfont iconright"></i></a>
   </nav>
 
@@ -286,7 +315,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-text">网络分层模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSI"><span class="toc-text">OSI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP"><span class="toc-text">TCP&#x2F;IP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-text">三次握手，四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-text">TCP报文格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-text">三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-text">四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AD%89%E5%BE%852MSL%E6%84%8F%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">客户端等待2MSL意义是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSL%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E5%90%97%EF%BC%9F"><span class="toc-text">MSL可以修改吗？</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-text">网络分层模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSI"><span class="toc-text">OSI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP"><span class="toc-text">TCP&#x2F;IP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-text">三次握手，四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-text">TCP报文格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-text">三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-text">四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AD%89%E5%BE%852MSL%E6%84%8F%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">客户端等待2MSL意义是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSL%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E5%90%97%EF%BC%9F"><span class="toc-text">MSL可以修改吗？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">TCP和UDP的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP"><span class="toc-text">TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E5%AD%97%E6%AE%B5%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-text">各字段的意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5"><span class="toc-text">1.面向连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AF%E9%9D%A0"><span class="toc-text">2.可靠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9D%A2%E5%90%91%E5%AD%97%E8%8A%82%E6%B5%81"><span class="toc-text">3.面向字节流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP"><span class="toc-text">UDP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%A2%E5%90%91%E6%97%A0%E8%BF%9E%E6%8E%A5"><span class="toc-text">1. 面向无连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8D%E5%8F%AF%E9%9D%A0"><span class="toc-text">2. 不可靠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E6%8A%A5-%E6%8A%A5%E6%96%87"><span class="toc-text">3. 面向数据报&#x2F;报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-text">4. 缓冲区</span></a></li></ol></li></ol></li></ol>
   </aside>
 
         
