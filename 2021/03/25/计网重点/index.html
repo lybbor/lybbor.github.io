@@ -182,7 +182,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 25, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3055</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2664</span>
     </div>
   </div>
 </section>
@@ -247,7 +247,7 @@
 </tbody></table>
 <p><img   class="lazyload" data-original="!%5B%5D(https://i.loli.net/2021/03/25/2dliH9hRbNp8csf.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <h1 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h1><blockquote>
-<p>TCP和UDP都是位于传输层的协议。<br>很棒的参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hansionz/article/details/86435127?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161684967816780357277911%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=161684967816780357277911&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-86435127.first_rank_v2_pc_rank_v29&amp;utm_term=TCP+UDP">https://blog.csdn.net/hansionz/article/details/86435127?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161684967816780357277911%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=161684967816780357277911&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-86435127.first_rank_v2_pc_rank_v29&amp;utm_term=TCP+UDP</a></p>
+<p>TCP和UDP都是位于传输层的协议。<br>很棒的参考：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hansionz/article/details/86435127?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161684967816780357277911%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=161684967816780357277911&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-86435127.first_rank_v2_pc_rank_v29&utm_term=TCP+UDP" title="参考">参考</a></p>
 </blockquote>
 <h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>TCP协议报文格式：<br><img   class="lazyload" data-original="https://img-blog.csdnimg.cn/20190114091108494.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbnNpb256,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <h3 id="各字段的意义"><a href="#各字段的意义" class="headerlink" title="各字段的意义"></a>各字段的意义</h3><p>（对于报文中都熟悉的地方不多说了。）<br><strong>4位首部长度/数据偏移：</strong><br>占4位，它指出TCP报文段的数据起始处距离TCP报文段的起始处有多远。这个字段实际上是指出TCP报文段的首部长度。由于首部中还有长度不确定的选项字段，因此数据偏移字段是必要的。但应注意，“数据偏移”的单位是<strong>32位字</strong>（即以4字节长的字为计算单位）。由于4位二进制数能够表示的最大十进制数字是15，因此数据偏移的最大值是60字节，这也是TCP首部的最大长度（即选项字段长度不能超过40字节）。<br>15*4=60字节。<br>15*32=480位；1字节=8位；∴480/8=60位；</p>
