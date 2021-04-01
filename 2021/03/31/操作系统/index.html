@@ -11,8 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="锁、进程、线程、协程、IO多路复用、BIO、NIO…… 
-">
+  <meta name="description" content="锁、进程、线程、协程、IO多路复用、BIO、NIO……...">
   <meta name="author" content="lybbor">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
@@ -183,13 +182,82 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 31, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>29</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2244</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         </p>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>是应用程序执行副本，操作系统资源分配最小单位<br><img   class="lazyload" data-original="https://i.loli.net/2021/04/01/h45qUdeKFNZHwSj.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>进程有很多东西，但是我们执行只需要CPU和内存（程序编译成2进制存入内存，然后CPU去读取内存中的指令一条条执行，不需要进程），于是抽象出了线程<br>应用启动就变成进程，进程会先拿到一个主线程，这个主线程再去操作系统申请线程</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>OS分配执行程序的最小单位(执行程序指的kernal thread，应用程序的thread 和kernal thread存在映射关系)；只需要程序和CPU；所有的进程启动以后必然有一个主线程。</p>
+<h2 id="1-real-thread"><a href="#1-real-thread" class="headerlink" title="(1)real thread"></a>(1)real thread</h2><p><img   class="lazyload" data-original="https://i.loli.net/2021/04/01/n2ePHVEdsxqrm5v.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<blockquote>
+<p>用户实在自己的空间创建线程，而OS只调度自己的线程，所以用户的线程需要挂靠/映射到OS的线程中，因为这样才能真的执行。所以只有kernal thread才是真的thread。</p>
+</blockquote>
+<h2 id="2-进程线程区别"><a href="#2-进程线程区别" class="headerlink" title="(2)进程线程区别"></a>(2)进程线程区别</h2><p>进程是拿资源的，线程是执行程序的，他俩关联性可以不强。</p>
+<h2 id="3-Thread-pool"><a href="#3-Thread-pool" class="headerlink" title="(3)Thread pool"></a>(3)Thread pool</h2><p>高并发场景下的思想：<br><img   class="lazyload" data-original="https://i.loli.net/2021/04/01/sRZMI64xXUdihTN.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="4-线程切换"><a href="#4-线程切换" class="headerlink" title="(4)线程切换"></a>(4)线程切换</h2><p><img   class="lazyload" data-original="https://i.loli.net/2021/04/01/LWDFeAECtRTHrcp.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<blockquote>
+<p>阻塞状态是由操作系统内核来进行切换:要存储当前线程的cpu状态，进入调度器，调度完又加载CPU状态；<br>如果任务很小，这样线程频繁切换，很不划算，于是想到了将所有task抽象成更小的模型：<strong>routine</strong>。</p>
+</blockquote>
+<h2 id="5-线程的几种可用状态"><a href="#5-线程的几种可用状态" class="headerlink" title="(5)线程的几种可用状态"></a>(5)线程的几种可用状态</h2><p><img   class="lazyload" data-original="https://i.loli.net/2021/04/01/y7WlZw5JFBOuINm.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h3 id="1-创建-new"><a href="#1-创建-new" class="headerlink" title="1.创建(new)"></a>1.创建(new)</h3><blockquote>
+<p>建立一个新线程，新生的线程将处于新建状态。此时它已经有了相应的主存空间和其他资源，并已经被初始化。</p>
+</blockquote>
+<h3 id="2-准备-runnable"><a href="#2-准备-runnable" class="headerlink" title="2.准备(runnable)"></a>2.准备(runnable)</h3><blockquote>
+<p>线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权 。</p>
+</blockquote>
+<h3 id="3-阻塞状态-blocked"><a href="#3-阻塞状态-blocked" class="headerlink" title="3.阻塞状态(blocked)"></a>3.阻塞状态(blocked)</h3><blockquote>
+<p>阻塞状态是指线程因为某种原因放弃了cpu 使用权，也即让出了cpu timeslice，暂时停止运行。直到线程进入可运行(runnable)状态，才有机会再次获得cpu timeslice 转到运行(running)状态。阻塞的情况分三种： </p>
+</blockquote>
+<ol>
+<li>等待阻塞：运行(running)的线程执行o.wait()方法，JVM会把该线程放入等待队列(waitting queue)中。</li>
+<li>同步阻塞：运行(running)的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池(lock pool)中。</li>
+<li>其他阻塞：运行(running)的线程执行Thread.sleep(long ms)或t.join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入可运行(runnable)状态。</li>
+</ol>
+<h3 id="4-运行状态-running"><a href="#4-运行状态-running" class="headerlink" title="4.运行状态(running)"></a>4.运行状态(running)</h3><blockquote>
+<p>可运行状态(runnable)的线程获得了cpu 时间片（timeslice） ，执行程序代码。</p>
+</blockquote>
+<h3 id="5-死亡状态-dead"><a href="#5-死亡状态-dead" class="headerlink" title="5.死亡状态(dead)"></a>5.死亡状态(dead)</h3><blockquote>
+<p>线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。死亡的线程不可再次复生。</p>
+</blockquote>
+<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>比线程更小，协程的暂停完全由程序控制（也就是在用户态执行）。<br>Routine的一种实现（轻量级线程）<br><img   class="lazyload" data-original="https://i.loli.net/2021/04/01/MYwHkyQI4teEP3j.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<blockquote>
+<p>高IO，任务很多的情况下创建routine，切换成本更低，是轻量级线程。</p>
+</blockquote>
+<h1 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h1><h2 id="1-并发"><a href="#1-并发" class="headerlink" title="1.并发"></a>1.并发</h2><blockquote>
+<p>指宏观上在一段时间内能同时运行多个程序<br>OS通过引入进程和线程，使得程序能够并发运行</p>
+</blockquote>
+<h2 id="2-并行"><a href="#2-并行" class="headerlink" title="2.并行"></a>2.并行</h2><blockquote>
+<p>指同一时刻能运行多个指令。<br>需要硬件支持，如多流水线、多核处理器或者分布式计算系统。</p>
+</blockquote>
+<h1 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h1><p>共享是指系统中的资源可以被多个并发进程共同使用。<br>有两种共享方式：<strong>互斥共享</strong>和<strong>同时共享</strong>。</p>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><blockquote>
+<p>并发进程在竞争资源的过程中可能产生死锁。</p>
+</blockquote>
+<h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><p>根本原因：系统能够提供的资源个数比请求该资源的进程数要少。当系统中两个或多个进程因申请资源得不到满足而等待时，若各进程都没有能力进一步执行，系统就发生死锁。</p>
+<h2 id="产生条件"><a href="#产生条件" class="headerlink" title="产生条件"></a>产生条件</h2><h3 id="1-互斥"><a href="#1-互斥" class="headerlink" title="(1)互斥"></a>(1)互斥</h3><p>多进程共享的资源具有互斥特性，即一次只能由一个进程使用。如果另一个进程申请该资源，那么申请进程必须等待，直到该资源被释放。</p>
+<h3 id="2-不剥夺（非抢占）"><a href="#2-不剥夺（非抢占）" class="headerlink" title="(2)不剥夺（非抢占）"></a>(2)不剥夺（非抢占）</h3><p>进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能 由获得该资源的进程自己来释放（只能是主动释放)。</p>
+<h3 id="3-占有并等待（部分分配）"><a href="#3-占有并等待（部分分配）" class="headerlink" title="(3)占有并等待（部分分配）"></a>(3)占有并等待（部分分配）</h3><p>进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。</p>
+<h3 id="4-环路条件（循环等待）"><a href="#4-环路条件（循环等待）" class="headerlink" title="(4)环路条件（循环等待）"></a>(4)环路条件（循环等待）</h3><p>存在一种进程资源的循环等待链，链中每一个进程已获得的资源同时被 链中下一个进程所请求。</p>
+<h2 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h2><ol>
+<li>预防死锁</li>
+<li>避免死锁<br> 有序资源分配法<br> 银行家算法</li>
+<li>死锁检测与忽略</li>
+</ol>
+<h2 id="如何确保N个线程可以访问N个资源同时又不导致死锁？"><a href="#如何确保N个线程可以访问N个资源同时又不导致死锁？" class="headerlink" title="如何确保N个线程可以访问N个资源同时又不导致死锁？"></a>如何确保N个线程可以访问N个资源同时又不导致死锁？</h2><blockquote>
+<p>只要破坏四个必要条件其中任意一个条件，就可以避免死锁，其中最简单的就是破环循环等待条件。指定获取锁的顺序，并强制线程按照指定的顺序获取锁，按同一顺序访问对象，加载锁，释放锁。</p>
+</blockquote>
+<h1 id="进程通信方式"><a href="#进程通信方式" class="headerlink" title="进程通信方式"></a>进程通信方式</h1><blockquote>
+<p>进程通信是一个进程与另一个进程间共享信息的一种方式。</p>
+</blockquote>
+<p><img   class="lazyload" data-original="https://note.youdao.com/yws/public/resource/4b4ddcc360fa7e829abe96e3d58122a3/xmlnote/106D9232A970484293B88CB3363A2A5D/1428" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="1-消息队列"><a href="#1-消息队列" class="headerlink" title="1.消息队列"></a>1.消息队列</h2><h3 id="1-消息缓冲通信"><a href="#1-消息缓冲通信" class="headerlink" title="(1)消息缓冲通信"></a>(1)消息缓冲通信</h3><h3 id="2-信箱通信"><a href="#2-信箱通信" class="headerlink" title="(2)信箱通信"></a>(2)信箱通信</h3><h2 id="2-共享内存"><a href="#2-共享内存" class="headerlink" title="2.共享内存"></a>2.共享内存</h2><p><em>eg.复制粘贴板</em><br>最快的一种通信方式，多个进程可同时访问同一片内存空间，相对其他方式来说具有更少的数据拷贝，效率较高。</p>
+<h2 id="3-管道通信"><a href="#3-管道通信" class="headerlink" title="*3.管道通信"></a>*3.管道通信</h2><h3 id="无名管道（PIPE）"><a href="#无名管道（PIPE）" class="headerlink" title="无名管道（PIPE）"></a>无名管道（PIPE）</h3><p>系统内核，FIFO</p>
+<h3 id="有名管道（MKPIPE）"><a href="#有名管道（MKPIPE）" class="headerlink" title="有名管道（MKPIPE）"></a>有名管道（MKPIPE）</h3><p>缓存</p>
+<h2 id="4-信号量"><a href="#4-信号量" class="headerlink" title="4.信号量"></a>4.信号量</h2><h2 id="5-套接字（SOCKET）"><a href="#5-套接字（SOCKET）" class="headerlink" title="5.套接字（SOCKET）"></a>5.套接字（SOCKET）</h2><h1 id="常见的进程调度算法"><a href="#常见的进程调度算法" class="headerlink" title="常见的进程调度算法"></a>常见的进程调度算法</h1><p><img   class="lazyload" data-original="https://note.youdao.com/yws/public/resource/4b4ddcc360fa7e829abe96e3d58122a3/xmlnote/207D3380590644B082D43AB4B2F1581E/2173" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="https://note.youdao.com/yws/public/resource/4b4ddcc360fa7e829abe96e3d58122a3/xmlnote/B0EAA691242A4B79A6EAF13C23A7169B/2178" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h1 id="截止于30题"><a href="#截止于30题" class="headerlink" title="截止于30题"></a>截止于30题</h1>
       </section>
       <section class="extra">
         
@@ -222,7 +290,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B"><span class="toc-text">进程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-real-thread"><span class="toc-text">(1)real thread</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8C%BA%E5%88%AB"><span class="toc-text">(2)进程线程区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Thread-pool"><span class="toc-text">(3)Thread pool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A2"><span class="toc-text">(4)线程切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E5%8F%AF%E7%94%A8%E7%8A%B6%E6%80%81"><span class="toc-text">(5)线程的几种可用状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA-new"><span class="toc-text">1.创建(new)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%87%86%E5%A4%87-runnable"><span class="toc-text">2.准备(runnable)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%98%BB%E5%A1%9E%E7%8A%B6%E6%80%81-blocked"><span class="toc-text">3.阻塞状态(blocked)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81-running"><span class="toc-text">4.运行状态(running)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%AD%BB%E4%BA%A1%E7%8A%B6%E6%80%81-dead"><span class="toc-text">5.死亡状态(dead)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B"><span class="toc-text">协程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%B9%B6%E8%A1%8C"><span class="toc-text">并发和并行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%B9%B6%E5%8F%91"><span class="toc-text">1.并发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B9%B6%E8%A1%8C"><span class="toc-text">2.并行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB"><span class="toc-text">共享</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0"><span class="toc-text">产生原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E6%9D%A1%E4%BB%B6"><span class="toc-text">产生条件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%92%E6%96%A5"><span class="toc-text">(1)互斥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8D%E5%89%A5%E5%A4%BA%EF%BC%88%E9%9D%9E%E6%8A%A2%E5%8D%A0%EF%BC%89"><span class="toc-text">(2)不剥夺（非抢占）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8D%A0%E6%9C%89%E5%B9%B6%E7%AD%89%E5%BE%85%EF%BC%88%E9%83%A8%E5%88%86%E5%88%86%E9%85%8D%EF%BC%89"><span class="toc-text">(3)占有并等待（部分分配）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%8E%AF%E8%B7%AF%E6%9D%A1%E4%BB%B6%EF%BC%88%E5%BE%AA%E7%8E%AF%E7%AD%89%E5%BE%85%EF%BC%89"><span class="toc-text">(4)环路条件（循环等待）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-text">处理方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9DN%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AEN%E4%B8%AA%E8%B5%84%E6%BA%90%E5%90%8C%E6%97%B6%E5%8F%88%E4%B8%8D%E5%AF%BC%E8%87%B4%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="toc-text">如何确保N个线程可以访问N个资源同时又不导致死锁？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="toc-text">进程通信方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">1.消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B6%88%E6%81%AF%E7%BC%93%E5%86%B2%E9%80%9A%E4%BF%A1"><span class="toc-text">(1)消息缓冲通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BF%A1%E7%AE%B1%E9%80%9A%E4%BF%A1"><span class="toc-text">(2)信箱通信</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="toc-text">2.共享内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%A1%E9%81%93%E9%80%9A%E4%BF%A1"><span class="toc-text">*3.管道通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%90%8D%E7%AE%A1%E9%81%93%EF%BC%88PIPE%EF%BC%89"><span class="toc-text">无名管道（PIPE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%90%8D%E7%AE%A1%E9%81%93%EF%BC%88MKPIPE%EF%BC%89"><span class="toc-text">有名管道（MKPIPE）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-text">4.信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%A5%97%E6%8E%A5%E5%AD%97%EF%BC%88SOCKET%EF%BC%89"><span class="toc-text">5.套接字（SOCKET）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-text">常见的进程调度算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%AA%E6%AD%A2%E4%BA%8E30%E9%A2%98"><span class="toc-text">截止于30题</span></a></li></ol>
   </aside>
 
         
