@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html lang="UTF-8" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Leetcode刷题记录 - lybbor&#39;s blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="坚持刷题！思维upup！ 
+每日一题2021.04.0...">
+  <meta name="author" content="lybbor">
+  <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/favicon-16x16.ico" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/favicon-16x16.ico" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-16x16.ico">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: false,
+        alipay: '',
+        wechat: ''
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '/images/theme/welcome-image.jpg',
+          api: ''
+        },
+        motto: {
+          default: '嗝儿',
+          api: '',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/2.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">Leetcode刷题记录</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+
+<nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p>lybbor's blog</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/article/mmexport1607774723491.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Leetcode刷题记录</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 07, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3813</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        </p>
+<h1 id="每日一题"><a href="#每日一题" class="headerlink" title="每日一题"></a>每日一题</h1><h2 id="2021-04-07"><a href="#2021-04-07" class="headerlink" title="2021.04.07"></a>2021.04.07</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/" title="点击进入题目">点击进入题目</a><br><strong>思路：</strong></p>
+<blockquote>
+<p>1.暴力for。<br>2.二分查找。</p>
+</blockquote>
+<p><strong>解析：</strong><br><strong>2.二分查找</strong><br>思路：<br>1.左中右值相等又不等于target,缩小区间：l++,r–；</p>
+<p>2.左区间有序:<br>(1)target在有序的区间内，范围变为：[l,mid-1]<br>(2)target不在这段有序的区间中，范围变为：[mid+1,r]</p>
+<p>3.右区间有序:<br>(1)target在这段有序区间内，范围变为：[mid-1,r];<br>(2)target不再这段有序区间内，范围变为：[l,mid+1];</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n=nums.size();<br>        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-keyword">if</span>(nums[<span class="hljs-number">0</span>]==target)<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> r=n<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">while</span>(l&lt;r)&#123;<br>            <span class="hljs-keyword">int</span> mid=(l+r)/<span class="hljs-number">2</span>; <span class="hljs-keyword">if</span>(nums[mid]==target||nums[l]==target||nums[r]==target)<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            <span class="hljs-keyword">if</span>(nums[l]==nums[mid]&amp;&amp;nums[r]==nums[mid])&#123;<br>                l++;<br>                r--;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[l]&lt;=nums[mid])&#123;<br>                <span class="hljs-keyword">if</span>(nums[l]&lt;target&amp;&amp;nums[mid]&gt;target)<br>                    r=mid<span class="hljs-number">-1</span>;<br>                <span class="hljs-keyword">else</span> <br>                    l=mid+<span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">if</span>(nums[r]&gt;target&amp;&amp;nums[mid]&lt;target)<br>                    l=mid+<span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">else</span><br>                    r=mid<span class="hljs-number">-1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><strong>1.暴力for：(不是重点)</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n=nums.size();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>            <span class="hljs-keyword">if</span>(nums[i]==target)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<hr>
+<h1 id="剑指offer"><a href="#剑指offer" class="headerlink" title="剑指offer"></a>剑指offer</h1><h2 id="58-左旋转字符串"><a href="#58-左旋转字符串" class="headerlink" title="58.左旋转字符串"></a>58.左旋转字符串</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/" title="点击进入题目">点击进入题目</a></p>
+<p><strong>思路：</strong><br>简单暴力。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">reverseLeftWords</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s, <span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> a=s.length();<br>        <span class="hljs-built_in">string</span> b=s;<br>        <span class="hljs-keyword">int</span> i;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;a-n;i++)&#123;<br>            s[i]=b[i+n];<br>        &#125;<br>        <span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(;i&lt;a;i++)&#123;<br>            s[i]=b[j++];<br>        &#125;<br>        <span class="hljs-keyword">return</span> s;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="27-二叉树的镜像"><a href="#27-二叉树的镜像" class="headerlink" title="27.二叉树的镜像"></a>27.二叉树的镜像</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/" title="点击进入题目">点击进入题目</a></p>
+<p><strong>思路：</strong><br>左子节点和右子节点交换</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * struct TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode *left;</span><br><span class="hljs-comment"> *     TreeNode *right;</span><br><span class="hljs-comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">mirrorTree</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(root==<span class="hljs-literal">NULL</span>)<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>        TreeNode * tmp=root-&gt;left;<br>        root-&gt;left=mirrorTree(root-&gt;right);<br>        root-&gt;right=mirrorTree(tmp);<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="55-二叉树的深度"><a href="#55-二叉树的深度" class="headerlink" title="55.二叉树的深度"></a>55.二叉树的深度</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/" title="点击进入题目">点击进入题目</a></p>
+<p><strong>思路：</strong></p>
+<blockquote>
+<p>1.DFS<br>2.BFS</p>
+</blockquote>
+<p><strong>解析：</strong><br>1.DFS:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * struct TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode *left;</span><br><span class="hljs-comment"> *     TreeNode *right;</span><br><span class="hljs-comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(root==<span class="hljs-literal">NULL</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>+max(maxDepth(root-&gt;left),maxDepth(root-&gt;right));<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>2.BFS:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * struct TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode *left;</span><br><span class="hljs-comment"> *     TreeNode *right;</span><br><span class="hljs-comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(root==<span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> depth=<span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">queue</span>&lt;TreeNode *&gt; Q;<br>        Q.push(root);<br>        <span class="hljs-keyword">while</span>(!Q.empty())&#123;<br>            <span class="hljs-keyword">int</span> n=Q.size();<br>            depth++;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>                TreeNode * tmp=Q.front();<br>                Q.pop();<br>                <span class="hljs-keyword">if</span>(tmp-&gt;left)<br>                    Q.push(tmp-&gt;left);<br>                <span class="hljs-keyword">if</span>(tmp-&gt;right)<br>                    Q.push(tmp-&gt;right);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> depth;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>lybbor</li>
+    <!-- <li><strong>本文链接：</strong><a href="http://example.com/2021/04/07/Leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;07&#x2F;Leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;07&#x2F;Leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95&#x2F;index.html</a></li> -->
+    <li><strong>版权声明：</strong>本博客所有文章均采用 
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统笔记<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><span class="toc-text">每日一题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2021-04-07"><span class="toc-text">2021.04.07</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%91%E6%8C%87offer"><span class="toc-text">剑指offer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#58-%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">58.左旋转字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text">27.二叉树的镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#55-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6"><span class="toc-text">55.二叉树的深度</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1156202084 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/lybbor "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:rz1156202084@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p>lybbor's blog</p>
+    </div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
