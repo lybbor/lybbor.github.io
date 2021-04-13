@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html lang="UTF-8" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>C++STL（标准模板库） - lybbor&#39;s blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="Standard Template Library是一...">
+  <meta name="author" content="lybbor">
+  <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/favicon-16x16.ico" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/favicon-16x16.ico" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-16x16.ico">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: false,
+        alipay: '',
+        wechat: ''
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '/images/theme/welcome-image.jpg',
+          api: ''
+        },
+        motto: {
+          default: '嗝儿',
+          api: '',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/2.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">C++STL（标准模板库）</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+
+<nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p>lybbor's blog</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/article/IMG_0508(20210412-235109).JPG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">C++STL（标准模板库）</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 13, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3263</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        </p>
+<h1 id="1-STL简介"><a href="#1-STL简介" class="headerlink" title="1.STL简介"></a>1.STL简介</h1><p>STL（Standard Template Library），即标准模板库，是一个具有工业强度的，高效的C++程序库。它被容纳于C++标准程序库（C++ Standard Library）中，是ANSI/ISO C++标准中最新的也是极具革命性的一部分。该库包含了诸多在计算机科学领域里所常用的基本数据结构和基本算法。为广大C++程序员们提供了一个可扩展的应用框架，高度体现了软件的可复用性。</p>
+<p>STL的一个重要特点是<strong>数据结构和算法的分离</strong>。尽管这是个简单的概念，但这种分离确实使得STL变得非常通用。例如，由于STL的sort()函数是完全通用的，你可以用它来操作几乎任何数据集合，包括链表，容器和数组；</p>
+<p>STL另一个重要特性是它不是面向对象的。为了具有足够通用性，STL主要依赖于模板而不是封装，继承和虚函数（多态性）——OOP的三个要素。你在STL中找不到任何明显的类继承关系。这好像是一种倒退，但这正好是使得STL的组件具有广泛通用性的底层特征。另外，由于STL是基于模板，内联函数的使用使得生成的代码短小高效；</p>
+<p>从逻辑层次来看，在STL中体现了泛型化程序设计的思想，引入了诸多新的名词，比如像需求（requirements），概念（concept），模型（model），容器（container），算法（algorithmn），迭代子（iterator）等。与OOP（object-oriented programming）中的多态（polymorphism）一样，泛型也是一种软件的复用技术；</p>
+<p>从实现层次看，整个STL是以一种类型参数化的方式实现的，这种方式基于一个在早先C++标准中没有出现的语言特性–模板（template）。</p>
+<h1 id="2-六大组件"><a href="#2-六大组件" class="headerlink" title="2.六大组件"></a>2.六大组件</h1><ul>
+<li>容器（Container），是一种数据结构，如list，vector，和deques ，以模板类的方法提供。为了访问容器中的数据，可以使用由容器类输出的迭代器；</li>
+<li>迭代器（Iterator），提供了访问容器中对象的方法。例如，可以使用一对迭代器指定list或vector中的一定范围的对象。迭代器就如同一个指针。事实上，C++的指针也是一种迭代器。但是，迭代器也可以是那些定义了operator*()以及其他类似于指针的操作符地方法的类对象；</li>
+<li>算法（Algorithm），是用来操作容器中的数据的模板函数。例如，STL用sort()来对一个vector中的数据进行排序，用find()来搜索一个list中的对象，函数本身与他们操作的数据的结构和类型无关，因此他们可以在从简单数组到高度复杂容器的任何数据结构上使用；</li>
+<li>仿函数（Functor）</li>
+<li>适配器（Adaptor）</li>
+<li>分配器（allocator）<h2 id="2-1-容器"><a href="#2-1-容器" class="headerlink" title="2.1 容器"></a>2.1 容器</h2><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20190507220214982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjU1MzU3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    title="容器类"><span class="image-caption">容器类</span><br><a target="_blank" rel="noopener" href="http://www.cplusplus.com/reference" title="参考文档">参考文档</a></li>
+</ul>
+<h3 id="2-1-1-顺序容器（第一类容器）"><a href="#2-1-1-顺序容器（第一类容器）" class="headerlink" title="2.1.1 顺序容器（第一类容器）"></a>2.1.1 顺序容器（第一类容器）</h3><h4 id="2-1-1-1-矢量：vector"><a href="#2-1-1-1-矢量：vector" class="headerlink" title="2.1.1.1 矢量：vector"></a>2.1.1.1 矢量：vector</h4><blockquote>
+<p>表示可以改变大小的数组的序列容器。就像数组一样，向量对它们的元素使用连续的存储位置，这意味着它们的元素也可以使用指向其元素的常规指针上的偏移量来访问，并且效率与数组相同。但是与数组不同，它们的大小可以动态更改，其存储由容器自动处理。</p>
+</blockquote>
+<p><strong>主要使用的成员函数:</strong><br><strong>Iterators(迭代器):</strong><br>begin() 返回迭代器到开始<br>end() 返回迭代器到结束</p>
+<p><strong>容量：</strong><br>size() 返回大小<br>empty() 测试矢量是否为空<br>reverse() 矢量翻转</p>
+<p><strong>元素访问：</strong><br>[] 访问元素<br>at() 访问元素<br>front() 访问第一个元素<br>back() 访问最后一个元素</p>
+<p><strong>修改操作：</strong><br>push_back() 在末尾添加元素<br>pop_back() 删除最后一个元素<br>insert() 插入元素<br>erase() 擦除元素[可以清除一段，也可以值清除某一点]<br>swap() 交换内容<br>clear() 清除内容</p>
+<h4 id="2-1-1-2-双端队列：deque"><a href="#2-1-1-2-双端队列：deque" class="headerlink" title="2.1.1.2 双端队列：deque"></a>2.1.1.2 双端队列：deque</h4><blockquote>
+<p>双端队列是具有动态大小的序列容器，可以在两端（前端或后端）扩展或收缩。</p>
+</blockquote>
+<p><strong>迭代：</strong><br>begin() 返回迭代器到开始<br>end() 返回迭代器到结束</p>
+<p><strong>容量：</strong><br>size() 返回大小<br>empty() 检测是否为空</p>
+<p><strong>访问元素：</strong><br>[] 访问元素<br>at() 访问元素<br>front() 访问第一个元素<br>back() 访问最后一个元素</p>
+<p><strong>修改元素：</strong><br>push_back() 在末尾插入元素<br>push_front() 在首部插入元素<br>pop_back() 删掉末尾的元素<br>pop_front() 删掉首部的元素<br>insert() 插入元素<br>erase() 擦除元素<br>swap() 交换<br>clean() 清除</p>
+<h4 id="2-1-1-3-列表：list"><a href="#2-1-1-3-列表：list" class="headerlink" title="2.1.1.3 列表：list"></a>2.1.1.3 列表：list</h4><blockquote>
+<p>列表是序列容器，允许在序列中的任何位置进行恒定时间的插入和擦除操作，并在两个方向上进行迭代。</p>
+</blockquote>
+<p><strong>迭代：</strong><br>begin() 返回迭代器到开始<br>end() 返回迭代器到末尾</p>
+<p><strong>容量：</strong><br>empty() 检测是否为空<br>size() 返回大小<br>max_size() 返回最大大小</p>
+<p><strong>元素访问：</strong><br>front() 访问首部元素<br>back() 访问尾部元素</p>
+<p><strong>修改：</strong><br>assign() 初始化<br>emplace_front() 构造和在首部插入元素C++11引入<br>push_front() 在首部插入元素<br>pop_front() 删掉首部元素<br>emplace_back() 构造和在尾部插入元素C++11引入<br>push_back() 在末尾插入元素<br>pop_back() 在尾部插入元素<br>emplace() 构造并自选位置插入C++11引入<br>insert() 在指定位置的元素之前插入新元素来扩展容器。<br>erase() 擦除一个或一段<br>swap() 交换<br>clear() 清除</p>
+<p><strong>操作：</strong><br>splice() 将元素从一个列表转移到另一个列表<br>remove() 删掉具有特定值的某元素<br>remove_if() 删除满足条件的元素<br>unique() 去重<br>merge() 合并列表<br>reverse() 倒置</p>
+<h3 id="2-1-2-关联容器（第一类容器）"><a href="#2-1-2-关联容器（第一类容器）" class="headerlink" title="2.1.2 关联容器（第一类容器）"></a>2.1.2 关联容器（第一类容器）</h3><h4 id="2-1-2-1-集合：set"><a href="#2-1-2-1-集合：set" class="headerlink" title="2.1.2.1 集合：set"></a>2.1.2.1 集合：set</h4><blockquote>
+<p>集合是按照特定顺序存储唯一元素的容器。</p>
+</blockquote>
+<p><strong>迭代器：</strong><br>begin() 返回迭代器到首部<br>end() 返回迭代器到尾部</p>
+<p><strong>容量：</strong><br>empty() 检测集合是否为空<br>size() 返回容器大小<br>max_size() 返回最大的容器大小</p>
+<p><strong>修改：</strong><br>insert() 插入元素<br>erase() 擦除元素<br>swap() 交换元素<br>clear() 清除</p>
+<p><strong>观察员：</strong><br>key_comp() 返回比较对象,默认less，所以而这比较是小于的话返回true<br>value_comp() 返回比较对象,默认less，所以而这比较是小于的话返回true</p>
+<p><strong>操作：</strong><br>find() 获取元素的迭代器<br>count() 计算具有特定值的元素<br>lower_bound() 返回迭代器到上限<br>upper_bound() 返回迭代器到下线<br>equal_range() 获取相同元素的范围，是两个迭代器</p>
+<h4 id="2-1-2-2-映射：map"><a href="#2-1-2-2-映射：map" class="headerlink" title="2.1.2.2 映射：map"></a>2.1.2.2 映射：map</h4><blockquote>
+<p>映射是关联容器，用于存储按特定顺序由键值和映射值的组合形成的元素。</p>
+</blockquote>
+<p><strong>迭代器：</strong><br>begin() 返回迭代器到首部<br>end() 返回迭代器到尾部</p>
+<p><strong>容量：</strong><br>empty() 检测是否为空<br>size() 返回容器大小<br>max_size() 返回最大大小</p>
+<p><strong>元素访问：</strong><br>[] 访问元素<br>at() 访问元素 c++11引入</p>
+<p><strong>修改：</strong><br>insert() 插入元素<br>erase() 擦除元素<br>swap() 交换元素<br>clear() 清除元素<br>emplace() 构造并插入元素<br>emplace_hint() 选位置插入元素</p>
+<p><strong>观察员：</strong><br>key_comp()<br>value_comp()</p>
+<p><strong>操作：</strong><br>find()<br>count()<br>lower_bound()<br>upper_bound()<br>equal_bound()</p>
+<h4 id="2-1-2-3-多重集合：multiset"><a href="#2-1-2-3-多重集合：multiset" class="headerlink" title="2.1.2.3 多重集合：multiset"></a>2.1.2.3 多重集合：multiset</h4><h4 id="2-1-2-4-多重映射：multimap"><a href="#2-1-2-4-多重映射：multimap" class="headerlink" title="2.1.2.4 多重映射：multimap"></a>2.1.2.4 多重映射：multimap</h4><h3 id="2-1-3-容器适配器"><a href="#2-1-3-容器适配器" class="headerlink" title="2.1.3 容器适配器"></a>2.1.3 容器适配器</h3><h4 id="2-1-3-1-栈：stack"><a href="#2-1-3-1-栈：stack" class="headerlink" title="2.1.3.1 栈：stack"></a>2.1.3.1 栈：stack</h4><h4 id="2-1-3-2-队列：queue"><a href="#2-1-3-2-队列：queue" class="headerlink" title="2.1.3.2 队列：queue"></a>2.1.3.2 队列：queue</h4><h4 id="2-1-3-3-优先队列：priority-queue"><a href="#2-1-3-3-优先队列：priority-queue" class="headerlink" title="2.1.3.3 优先队列：priority_queue"></a>2.1.3.3 优先队列：priority_queue</h4>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>lybbor</li>
+    <!-- <li><strong>本文链接：</strong><a href="http://example.com/2021/04/13/C-STL%EF%BC%88%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93%EF%BC%89/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;13&#x2F;C-STL%EF%BC%88%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93%EF%BC%89&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;13&#x2F;C-STL%EF%BC%88%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93%EF%BC%89&#x2F;index.html</a></li> -->
+    <li><strong>版权声明：</strong>本博客所有文章均采用 
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93/" rel="tag">STL标准模板库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/04/12/%E6%AC%A7%E6%8B%89%E7%B4%A0%E6%95%B0%E7%AD%9B/">欧拉筛<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-STL%E7%AE%80%E4%BB%8B"><span class="toc-text">1.STL简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%85%AD%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-text">2.六大组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%AE%B9%E5%99%A8"><span class="toc-text">2.1 容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%EF%BC%88%E7%AC%AC%E4%B8%80%E7%B1%BB%E5%AE%B9%E5%99%A8%EF%BC%89"><span class="toc-text">2.1.1 顺序容器（第一类容器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8%EF%BC%88%E7%AC%AC%E4%B8%80%E7%B1%BB%E5%AE%B9%E5%99%A8%EF%BC%89"><span class="toc-text">2.1.2 关联容器（第一类容器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8"><span class="toc-text">2.1.3 容器适配器</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1156202084 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/lybbor "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:rz1156202084@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p>lybbor's blog</p>
+    </div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
