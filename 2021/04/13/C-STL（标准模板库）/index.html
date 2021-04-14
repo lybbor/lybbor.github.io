@@ -182,7 +182,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 13, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3263</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4288</span>
     </div>
   </div>
 </section>
@@ -207,14 +207,14 @@
 </blockquote>
 <p><strong>主要使用的成员函数:</strong><br><strong>Iterators(迭代器):</strong><br>begin() 返回迭代器到开始<br>end() 返回迭代器到结束</p>
 <p><strong>容量：</strong><br>size() 返回大小<br>empty() 测试矢量是否为空<br>reverse() 矢量翻转</p>
-<p><strong>元素访问：</strong><br>[] 访问元素<br>at() 访问元素<br>front() 访问第一个元素<br>back() 访问最后一个元素</p>
+<p><strong>元素访问：</strong><br>operator[] 访问元素<br>at() 访问元素<br>front() 访问第一个元素<br>back() 访问最后一个元素</p>
 <p><strong>修改操作：</strong><br>push_back() 在末尾添加元素<br>pop_back() 删除最后一个元素<br>insert() 插入元素<br>erase() 擦除元素[可以清除一段，也可以值清除某一点]<br>swap() 交换内容<br>clear() 清除内容</p>
 <h4 id="2-1-1-2-双端队列：deque"><a href="#2-1-1-2-双端队列：deque" class="headerlink" title="2.1.1.2 双端队列：deque"></a>2.1.1.2 双端队列：deque</h4><blockquote>
 <p>双端队列是具有动态大小的序列容器，可以在两端（前端或后端）扩展或收缩。</p>
 </blockquote>
 <p><strong>迭代：</strong><br>begin() 返回迭代器到开始<br>end() 返回迭代器到结束</p>
 <p><strong>容量：</strong><br>size() 返回大小<br>empty() 检测是否为空</p>
-<p><strong>访问元素：</strong><br>[] 访问元素<br>at() 访问元素<br>front() 访问第一个元素<br>back() 访问最后一个元素</p>
+<p><strong>访问元素：</strong><br>operator[] 访问元素<br>at() 访问元素<br>front() 访问第一个元素<br>back() 访问最后一个元素</p>
 <p><strong>修改元素：</strong><br>push_back() 在末尾插入元素<br>push_front() 在首部插入元素<br>pop_back() 删掉末尾的元素<br>pop_front() 删掉首部的元素<br>insert() 插入元素<br>erase() 擦除元素<br>swap() 交换<br>clean() 清除</p>
 <h4 id="2-1-1-3-列表：list"><a href="#2-1-1-3-列表：list" class="headerlink" title="2.1.1.3 列表：list"></a>2.1.1.3 列表：list</h4><blockquote>
 <p>列表是序列容器，允许在序列中的任何位置进行恒定时间的插入和擦除操作，并在两个方向上进行迭代。</p>
@@ -237,11 +237,53 @@
 </blockquote>
 <p><strong>迭代器：</strong><br>begin() 返回迭代器到首部<br>end() 返回迭代器到尾部</p>
 <p><strong>容量：</strong><br>empty() 检测是否为空<br>size() 返回容器大小<br>max_size() 返回最大大小</p>
-<p><strong>元素访问：</strong><br>[] 访问元素<br>at() 访问元素 c++11引入</p>
+<p><strong>元素访问：</strong><br>operator[] 访问元素<br>at() 访问元素 c++11引入</p>
 <p><strong>修改：</strong><br>insert() 插入元素<br>erase() 擦除元素<br>swap() 交换元素<br>clear() 清除元素<br>emplace() 构造并插入元素<br>emplace_hint() 选位置插入元素</p>
 <p><strong>观察员：</strong><br>key_comp()<br>value_comp()</p>
 <p><strong>操作：</strong><br>find()<br>count()<br>lower_bound()<br>upper_bound()<br>equal_bound()</p>
-<h4 id="2-1-2-3-多重集合：multiset"><a href="#2-1-2-3-多重集合：multiset" class="headerlink" title="2.1.2.3 多重集合：multiset"></a>2.1.2.3 多重集合：multiset</h4><h4 id="2-1-2-4-多重映射：multimap"><a href="#2-1-2-4-多重映射：multimap" class="headerlink" title="2.1.2.4 多重映射：multimap"></a>2.1.2.4 多重映射：multimap</h4><h3 id="2-1-3-容器适配器"><a href="#2-1-3-容器适配器" class="headerlink" title="2.1.3 容器适配器"></a>2.1.3 容器适配器</h3><h4 id="2-1-3-1-栈：stack"><a href="#2-1-3-1-栈：stack" class="headerlink" title="2.1.3.1 栈：stack"></a>2.1.3.1 栈：stack</h4><h4 id="2-1-3-2-队列：queue"><a href="#2-1-3-2-队列：queue" class="headerlink" title="2.1.3.2 队列：queue"></a>2.1.3.2 队列：queue</h4><h4 id="2-1-3-3-优先队列：priority-queue"><a href="#2-1-3-3-优先队列：priority-queue" class="headerlink" title="2.1.3.3 优先队列：priority_queue"></a>2.1.3.3 优先队列：priority_queue</h4>
+<h4 id="2-1-2-3-多重集合：multiset"><a href="#2-1-2-3-多重集合：multiset" class="headerlink" title="2.1.2.3 多重集合：multiset"></a>2.1.2.3 多重集合：multiset</h4><blockquote>
+<p><strong>与set区别：</strong><br><strong>multiset:</strong></p>
+</blockquote>
+<ol>
+<li>可以插入完全相同的两条记录。</li>
+<li>会提高数据插入的速度。</li>
+</ol>
+<blockquote>
+<p><strong>set:</strong></p>
+</blockquote>
+<ol>
+<li>不可以插入完全相同的两条记录</li>
+<li>保证记录的唯一性</li>
+<li>由于需要查重处理，会降低数据插入的速度</li>
+<li>可以作为一种去重的方法</li>
+</ol>
+<p><strong>迭代器：</strong><br>begin()<br>end()</p>
+<p><strong>容量：</strong><br>empty()<br>size()<br>max_size()</p>
+<p><strong>修改：</strong><br>insert()<br>erase()<br>swap()<br>clear()</p>
+<p><strong>观察者：</strong><br>find()<br>count()<br>lower_bound()<br>upper_bound()<br>equal_range()</p>
+<h4 id="2-1-2-4-多重映射：multimap"><a href="#2-1-2-4-多重映射：multimap" class="headerlink" title="2.1.2.4 多重映射：multimap"></a>2.1.2.4 多重映射：multimap</h4><blockquote>
+<p>multimap中的key可以重复,没有重载operator[ ]功能,对于重复的元素，查找的时候也是返回中序遍历的第一个元素。</p>
+</blockquote>
+<p><strong>迭代器：</strong><br>begin()<br>end()</p>
+<p><strong>容器：</strong><br>empty()<br>size()<br>max_size()</p>
+<p><strong>修改：</strong><br>insert()<br>erase()<br>swap()<br>clear()<br>emplace() C++11引入<br>emplace_hint() C++11引入</p>
+<p><strong>观察者：</strong><br>key_comp()<br>value_comp()</p>
+<p><strong>操作：</strong><br>find()<br>count()<br>lower_bound()<br>upper_bound()<br>equal_range()</p>
+<h3 id="2-1-3-容器适配器"><a href="#2-1-3-容器适配器" class="headerlink" title="2.1.3 容器适配器"></a>2.1.3 容器适配器</h3><blockquote>
+<p>容器适配器是用基本容器实现的一些新容器,这些容器可以用于描述更高级的数据结构。<del>（说简单点就是跟接口转换器差不多的功能）</del><br>栈，队列，优先队列。</p>
+</blockquote>
+<h4 id="2-1-3-1-栈：stack"><a href="#2-1-3-1-栈：stack" class="headerlink" title="2.1.3.1 栈：stack"></a>2.1.3.1 栈：stack</h4><blockquote>
+<p><strong>LIFO</strong>,堆栈是一种容器适配器，专门设计用于在LIFO上下文（后进先出）中操作，在LIFO上下文中，仅从容器的一端插入和提取元素。</p>
+</blockquote>
+<p><strong>成员函数：</strong><br>empty()<br>size()<br>top()<br>push()<br>emplace() C++11引入<br>pop()<br>swap()</p>
+<p><strong>非成员函数重载：</strong><br>swap(stack) C++11引入</p>
+<h4 id="2-1-3-2-队列：queue"><a href="#2-1-3-2-队列：queue" class="headerlink" title="2.1.3.2 队列：queue"></a>2.1.3.2 队列：queue</h4><p><strong>成员函数：</strong><br>empty()<br>size()<br>front()<br>back()<br>push()<br>emplace()<br>pop()<br>swap()</p>
+<p><strong>非成员函数重载：</strong><br>swap(queue)</p>
+<h4 id="2-1-3-3-优先队列：priority-queue"><a href="#2-1-3-3-优先队列：priority-queue" class="headerlink" title="2.1.3.3 优先队列：priority_queue"></a>2.1.3.3 优先队列：priority_queue</h4><blockquote>
+<p>优先级队列是一种容器适配器，经过专门设计，以使其按照某些严格的弱排序标准，其第一个元素始终是其中包含的最大元素。<br>此上下文类似于<strong>堆</strong>，可以在任何时候插入元素，并且只能检索最大堆元素（优先级队列顶部的元素）</p>
+</blockquote>
+<p><strong>成员函数：</strong><br>empty()<br>size()<br>top()<br>push()<br>emplace() C++11<br>pop()<br>swap() C++11</p>
+<p><strong>非成员函数重载：</strong><br>swap(queue) </p>
       </section>
       <section class="extra">
         
