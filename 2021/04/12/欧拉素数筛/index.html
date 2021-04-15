@@ -13,7 +13,7 @@
   
   <meta name="description" content="欧拉欧拉欧拉欧拉欧拉！
 
-">
+普通暴力素数筛1234567...">
   <meta name="author" content="lybbor">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
@@ -184,13 +184,29 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 12, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1372</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        
+        <h1 id="普通暴力素数筛"><a href="#普通暴力素数筛" class="headerlink" title="普通暴力素数筛"></a>普通暴力素数筛</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e7</span> + <span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> st[N]; <span class="hljs-comment">// 初始化为0， 0表示质数，1表示合数</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++)&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">2</span>; j &lt;= i / j; j++)&#123;<span class="hljs-comment">//试除法</span><br>		<span class="hljs-keyword">if</span>(i % j == <span class="hljs-number">0</span>)&#123;<br>			st[i] = <span class="hljs-number">1</span>; <span class="hljs-comment">// 合数，标记为1 </span><br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>时间复杂度O(n)</p>
+<h1 id="进阶筛的数学原理"><a href="#进阶筛的数学原理" class="headerlink" title="进阶筛的数学原理"></a>进阶筛的数学原理</h1><ol>
+<li><strong>一个合数一定能被分解为几个质数的幂的乘积</strong></li>
+<li>这个数的质因子一定是<strong>小于</strong>它本身</li>
+</ol>
+<h1 id="埃氏筛法"><a href="#埃氏筛法" class="headerlink" title="埃氏筛法"></a>埃氏筛法</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e7</span> + <span class="hljs-number">5</span>;<br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] st = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[N];<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">E_sieve</span><span class="hljs-params">(<span class="hljs-keyword">int</span>  n)</span></span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++)&#123;<br>		<span class="hljs-keyword">if</span>(st[i] == <span class="hljs-number">0</span>)&#123;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">2</span> * i; j &lt;= n; j += i)<br>			    st[j] = <span class="hljs-number">1</span>; <span class="hljs-comment">// j是i的一个倍数，j是合数，筛掉。</span><br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>时间复杂度为：O(nloglog2n)</p>
+<h2 id="埃氏筛有什么可以优化的地方？"><a href="#埃氏筛有什么可以优化的地方？" class="headerlink" title="埃氏筛有什么可以优化的地方？"></a>埃氏筛有什么可以优化的地方？</h2><ol>
+<li>重复筛了<br>比如6，被2筛了，被3筛了</li>
+<li>最小质因子一定小于根号n<br>所以直接从2-根号n</li>
+</ol>
+<h2 id="优化的埃氏筛"><a href="#优化的埃氏筛" class="headerlink" title="优化的埃氏筛"></a>优化的埃氏筛</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e7</span> + <span class="hljs-number">5</span>;<br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] st = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[N];<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">E_sieve</span><span class="hljs-params">(<span class="hljs-keyword">int</span>  n)</span></span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n / i; i++)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(st[i] == <span class="hljs-number">0</span>)<br>		&#123;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i * i; j &lt;= n; j += i)<br>			    st[j] = <span class="hljs-number">1</span>; <span class="hljs-comment">// j是i的一个倍数，j是合数，筛掉。</span><br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>优化后近似O(n)了。</p>
+<h1 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e7</span> + <span class="hljs-number">5</span>;<br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] st = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[N], primes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[N];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ola</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i ++ )<br>    &#123;<br>        <span class="hljs-keyword">if</span> (st[i] == <span class="hljs-number">0</span>) primes[cnt ++ ] = i;<span class="hljs-comment">//将质数存到primes中</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; primes[j] &lt;= n / i; j ++ )<span class="hljs-comment">//要确保质数的第i倍是小于等于n的。</span><br>        &#123;<br>            st[primes[j] * i] = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">if</span> (i % primes[j] == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="核心点解析"><a href="#核心点解析" class="headerlink" title="核心点解析"></a>核心点解析</h2>
       </section>
       <section class="extra">
         
@@ -223,7 +239,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E6%9A%B4%E5%8A%9B%E7%B4%A0%E6%95%B0%E7%AD%9B"><span class="toc-text">普通暴力素数筛</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E7%AD%9B%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86"><span class="toc-text">进阶筛的数学原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%83%E6%B0%8F%E7%AD%9B%E6%B3%95"><span class="toc-text">埃氏筛法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%83%E6%B0%8F%E7%AD%9B%E6%9C%89%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E4%BC%98%E5%8C%96%E7%9A%84%E5%9C%B0%E6%96%B9%EF%BC%9F"><span class="toc-text">埃氏筛有什么可以优化的地方？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%83%E6%B0%8F%E7%AD%9B"><span class="toc-text">优化的埃氏筛</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E7%AD%9B"><span class="toc-text">欧拉筛</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%82%B9%E8%A7%A3%E6%9E%90"><span class="toc-text">核心点解析</span></a></li></ol></li></ol>
   </aside>
 
         
