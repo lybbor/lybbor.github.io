@@ -6,13 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>字典树 - lybbor&#39;s blog</title>
+  <title>滑动窗口算法 - lybbor&#39;s blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="你有想过搜索引擎的自动联想可能是怎么实现的吗？ 
-概述...">
+  <meta name="description" content="如何将嵌套for循环在少数问题中转换为单个for循环。...">
   <meta name="author" content="lybbor">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
@@ -136,7 +135,7 @@
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
       
     </div>
-    <div class="center">字典树</div>
+    <div class="center">滑动窗口算法</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -177,62 +176,44 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/article/QQ%E5%9B%BE%E7%89%8720210415101237.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/images/article/QQ%E5%9B%BE%E7%89%8720210418213447.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">字典树</h1>
+    <h1 class="head-title">滑动窗口算法</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 15, 2021</span>
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 18, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1081</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1080</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         </p>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
-<p><strong>百度官方</strong>：字典树又称单词查找树，Trie树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计，排序和保存大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计。它的优点是：利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较，查询效率比哈希树高。</p>
+<h1 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h1><blockquote>
+<p>觉得自己真的太死板了，想一个做法就死磕，结果明明就不适合。<br> 入门是看了其他语言的实现过程，明明我的语言并不适合这个方法，想用string来实现，然而string没有适合的函数，我却一直死磕，很简单的问题，磕了一上午，结果就是人磕自闭了。<br> 真的感觉自己还是太笨了。<br> 有什么办法呢，自闭完还是得冲。<br> 至少用string学会了两个string函数的用法，比如clear()、<br> tmp.insert(tmp.end(),1,s[eptr])、<br> tmp.insert(tmp.end(),s.begin()+sptr,s.begin()+eptr);</p>
 </blockquote>
-<blockquote>
-<p>字典树又叫前缀树、Trie树、单词查找树，是一种多路树形（N叉树）结构，哈希树的变种。通常来说，一个前缀树是用来存储字符串的。前缀树的每一个节点代表一个字符串（前缀）。每一个节点会有多个子节点，通往不同子节点的路径上有着不同的字符。子节点代表的字符串是由节点本身的原始字符串，以及通往该子节点路径上所有的字符组成的。</p>
-</blockquote>
-<p>比如：<br><img    class="lazyload" data-original="https://img2018.cnblogs.com/blog/1519578/201907/1519578-20190724132134884-1903210243.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    title="字典树"><span class="image-caption">字典树</span></p>
-<p>Trie的核心思想是<strong>空间换时间</strong>。利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。<br>所以缺点是<strong>内存消耗很大</strong>。</p>
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="1-字符串的快速检索"><a href="#1-字符串的快速检索" class="headerlink" title="1.字符串的快速检索"></a>1.字符串的快速检索</h2><p>查询时间复杂度是O(logn)</p>
-<h3 id="1-hash表"><a href="#1-hash表" class="headerlink" title="(1).hash表"></a>(1).hash表</h3><blockquote>
-<p>通过hash函数把所有的单词分别hash成key值，查询的时候直接通过hash函数即可，都知道hash表的效率是非常高的为O(1)，当然这是对于如果我们hash函数选取的好，计算量少，且冲突少，那单词查询速度肯定是非常快的。那如果hash函数的计算量相对大呢，且冲突律高呢？这些都是要考虑的因素。</p>
-</blockquote>
-<p><strong>更重要的是不支持动态查询，就是说只能完整输入，靠完整的输入来查找答案，不能一步一步的进行，比如输入people，必须输完people才能hash。</strong></p>
-<h3 id="2-字典树Trie"><a href="#2-字典树Trie" class="headerlink" title="(2)字典树Trie"></a>(2)字典树Trie</h3><blockquote>
-<p>空间允许的话，比hash好，因为可以动态查询。</p>
-</blockquote>
-<p>可以使用的场景：</p>
-<ol>
-<li>串排序<br>给定N个互不相同的仅由一个单词构成的英文名，让你将他们按字典序从小到大输出：<br>用字典树进行排序，采用数组的方式创建字典树，这棵树的每个结点的所有儿子很显然地按照其字母大小排序。对这棵树进行<strong>先序遍历</strong>即可。</li>
-<li>最长公共前缀<br>看结构图就懂了。对所有串建立字典树，对于两个串的最长公共前缀的长度即他们所在的结点的公共祖先个数，于是，问题就转化为当时<strong>公共祖先</strong>问题。</li>
-<li>自动匹配前缀显示后缀/串的快速检索<br>输入peo，自动显示前缀是peo的各种信息。</li>
+<hr>
+<h1 id="正题：滑动窗口"><a href="#正题：滑动窗口" class="headerlink" title="正题：滑动窗口"></a>正题：滑动窗口</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>TCP协议中，数据的发送方和接收方都会使用滑动窗口来控制数据的收发。<br>它有以下优点：</p>
+<ul>
+<li>避免等待</li>
+<li>流量控制</li>
+<li>效率高</li>
+</ul>
+<p><strong>滑动窗口的使用避免了数据重复校验，在字符串匹配等场合有多应用。</strong></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>设置左右指针，指向窗口的左端和右端</li>
+<li>右指针向右移动</li>
+<li>右指针变化的同时，如果满足条件，左指针移动，缩小窗口</li>
 </ol>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="3个性质"><a href="#3个性质" class="headerlink" title="3个性质"></a>3个性质</h2><ol>
-<li>根节点不包含字符，除根节点外每一个节点都只包含一个字符；</li>
-<li>根节点到某一节点，路径上讲过的字符连接起来，为该节点对应的字符串</li>
-<li>每个节点的所有子节点包含的字符都不同</li>
-</ol>
-<h2 id="基本操作的实现"><a href="#基本操作的实现" class="headerlink" title="基本操作的实现"></a>基本操作的实现</h2><ol>
-<li>查找<br>首先：从根节点开始，<br>其次：循环要插入的字符串，把字符串每一位放进去</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++"><br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li>插入</li>
-<li>删除（较为少见）</li>
-</ol>
-<h2 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h2>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h2 id="leetcode-3-无重复字符的最长字串"><a href="#leetcode-3-无重复字符的最长字串" class="headerlink" title="leetcode 3.无重复字符的最长字串"></a>leetcode 3.无重复字符的最长字串</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/%22%E7%82%B9%E5%87%BB%E8%BF%9B%E5%85%A5%E9%A2%98%E7%9B%AE%22">点击进入题目</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lengthOfLongestSubstring</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> n=s.size();<br>        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">unordered_map</span>&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; ss;<br>        <span class="hljs-keyword">int</span> sptr=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> eptr=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(eptr&lt;n)&#123;<br>            <span class="hljs-keyword">char</span> c1=s[eptr++];<br>            ss[c1]++;<br>            <span class="hljs-keyword">while</span>(ss[c1]&gt;<span class="hljs-number">1</span>)&#123;<br>                <span class="hljs-keyword">char</span> c2=s[sptr];<br>                ss[c2]--;<br>                sptr++;<br>            &#125;<br>            ans=max(ans,eptr-sptr);<br>        &#125; <br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
       </section>
       <section class="extra">
         
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>lybbor</li>
-    <!-- <li><strong>本文链接：</strong><a href="http://example.com/2021/04/15/%E5%AD%97%E5%85%B8%E6%A0%91/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;15&#x2F;%E5%AD%97%E5%85%B8%E6%A0%91&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;15&#x2F;%E5%AD%97%E5%85%B8%E6%A0%91&#x2F;index.html</a></li> -->
+    <!-- <li><strong>本文链接：</strong><a href="http://example.com/2021/04/18/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;18&#x2F;%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;18&#x2F;%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3&#x2F;index.html</a></li> -->
     <li><strong>版权声明：</strong>本博客所有文章均采用 
       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
@@ -240,12 +221,12 @@
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/2021/04/18/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"><i class="iconfont iconleft"></i>滑动窗口算法</a>
-    <a href="/2021/04/13/C-STL%EF%BC%88%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93%EF%BC%89/">C++STL（标准模板库）<i class="iconfont iconright"></i></a>
+    <a></a>
+    <a href="/2021/04/15/%E5%AD%97%E5%85%B8%E6%A0%91/">字典树<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -258,7 +239,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%BF%AB%E9%80%9F%E6%A3%80%E7%B4%A2"><span class="toc-text">1.字符串的快速检索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-hash%E8%A1%A8"><span class="toc-text">(1).hash表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AD%97%E5%85%B8%E6%A0%91Trie"><span class="toc-text">(2)字典树Trie</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E4%B8%AA%E6%80%A7%E8%B4%A8"><span class="toc-text">3个性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">基本操作的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">实现</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E5%A4%96%E8%AF%9D"><span class="toc-text">题外话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E9%A2%98%EF%BC%9A%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="toc-text">正题：滑动窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#leetcode-3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%97%E4%B8%B2"><span class="toc-text">leetcode 3.无重复字符的最长字串</span></a></li></ol></li></ol>
   </aside>
 
         
