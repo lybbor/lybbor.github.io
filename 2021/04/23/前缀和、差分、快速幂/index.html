@@ -6,13 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>KMP算法 - lybbor&#39;s blog</title>
+  <title>前缀和、差分约束、快速幂 - lybbor&#39;s blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="
-">
+  <meta name="description" content="区间修改问题！啪的一声，很快啊，我就想到了线段树，但我...">
   <meta name="author" content="lybbor">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-16x16.ico" type="image/png" sizes="32x32">
@@ -136,7 +135,7 @@
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
       
     </div>
-    <div class="center">KMP算法</div>
+    <div class="center">前缀和、差分约束、快速幂</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -177,26 +176,161 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/article/IMG_0543(20210413-232329).JPG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/images/article/IMG_0568.JPG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">KMP算法</h1>
+    <h1 class="head-title">前缀和、差分约束、快速幂</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 19, 2021</span>
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 23, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1158</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        
+        <h1 id="一、前缀和"><a href="#一、前缀和" class="headerlink" title="一、前缀和"></a>一、前缀和</h1><p>m次求一段区间内的和，<strong>要求时间复杂度为O(m)</strong><br>是不是区间一下想到了线段树，但是线段树的话，时间复杂度是O(mlogn)，要被卡。</p>
+<table>
+<thead>
+<tr>
+<th>下标</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nums</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>pre</td>
+<td>0</td>
+<td>2</td>
+<td>5</td>
+<td>6</td>
+<td>11</td>
+<td>17</td>
+</tr>
+</tbody></table>
+<p>由图可得：<br>求[1,2]区间所有值的和为：pre[2]-pre[2-1]=5-0=5<br>求[3,5]区间所有值的和为：pre[5]-pre[3-1]=17-5=12</p>
+<p>所以：求[x,y]区间内所有值的和公式为：pre[y]-pre[x-1]</p>
+<h1 id="二、差分约束"><a href="#二、差分约束" class="headerlink" title="二、差分约束"></a>二、差分约束</h1><p>m次区间修改（这回一下想到的是线段树的懒标下放），要求时间复杂度为O(m)。<br>如果线段树，还是O(mlogn)，不可。</p>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><table>
+<thead>
+<tr>
+<th>下标</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nums</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>7</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>D</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>-5</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p>不难看出D数组是每当前nums和上一位nums的差值<br>nums[5]=D[1]+D[2]+D[3]+D[4]+D[5]=2<br>所以nums[i]=D[1]+….+D[i-1]+D[i];</p>
+<p><strong>我们以这样的方式来把D数组建立出来。</strong></p>
+<h2 id="区间操作"><a href="#区间操作" class="headerlink" title="区间操作"></a>区间操作</h2><p>修改[2,5]区间，区间内每位数加上5<br>那么我们的区间其实只需要修改D[2]和D[5+1]</p>
+<table>
+<thead>
+<tr>
+<th>下标</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nums</td>
+<td>0</td>
+<td>2</td>
+<td>8</td>
+<td>10</td>
+<td>12</td>
+<td>7</td>
+<td>4</td>
+</tr>
+<tr>
+<td>D</td>
+<td>0</td>
+<td>2</td>
+<td>6</td>
+<td>2</td>
+<td>2</td>
+<td>-5</td>
+<td>-3</td>
+</tr>
+</tbody></table>
+<p>将原来的D[2]+5，原来的D[5+1]-5；<br>所以[x,y]区间内每个数加上A的话：</p>
+<blockquote>
+<p>D[x]+=A;D[y+1]-=A;</p>
+</blockquote>
+<h1 id="三、快速幂（重点）"><a href="#三、快速幂（重点）" class="headerlink" title="三、快速幂（重点）"></a>三、快速幂（重点）</h1><blockquote>
+<p>我觉得很无敌哈，很天才。<br>用于解决(a^b)%c</p>
+</blockquote>
+<h2 id="取模运算的性质"><a href="#取模运算的性质" class="headerlink" title="取模运算的性质"></a>取模运算的性质</h2><p><strong>(a * b )%p=( a%p * b%p )%p</strong></p>
+<p>设a = p*k1 + q1;<br>b = p*k2 + q2;</p>
+<p>( a * b )<br>=(p*k1 + q1)*(p*k2 + q2)<br>=(p*k1 * p*k2)+(p*k1 * q2)+(p*k2 * q1)+q1*q2</p>
+<p>(a * b )%p=[(p*k1 * p*k2)+(p*k1 * q2)+(p*k2 * q1)+q1*q2]%p<br>=(q1 * q2)%p</p>
+<p>(a%p * b%p)= q1*q2</p>
+<p>∴ (a * b )%p=( a%p * b%p )%p</p>
+<p>由推导可知，a^b是每次将指数b除以2<br>当指数为奇数的时候</p>
+<blockquote>
+<p>ans=ans*a<br>a=a*a<br>b/=2</p>
+</blockquote>
+<p>指数为偶数时</p>
+<blockquote>
+<p>a=a*a<br>b/=2</p>
+</blockquote>
+<p>加上<strong>取模操作</strong>的话<br>当指数为奇数的时候</p>
+<blockquote>
+<p>ans=((ans%c)*(a%c))%c<br>a=((a%c)*(a%c))%c<br>b/=2</p>
+</blockquote>
+<p>指数为偶数时</p>
+<blockquote>
+<p>a=(a*a)%c<br>b/=2</p>
+</blockquote>
+<h1 id="四、矩阵快速幂"><a href="#四、矩阵快速幂" class="headerlink" title="四、矩阵快速幂"></a>四、矩阵快速幂</h1>
       </section>
       <section class="extra">
         
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>lybbor</li>
-    <!-- <li><strong>本文链接：</strong><a href="http://example.com/2021/04/19/kmp%E7%AE%97%E6%B3%95/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;19&#x2F;kmp%E7%AE%97%E6%B3%95&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;19&#x2F;kmp%E7%AE%97%E6%B3%95&#x2F;index.html</a></li> -->
+    <!-- <li><strong>本文链接：</strong><a href="http://example.com/2021/04/23/%E5%89%8D%E7%BC%80%E5%92%8C%E3%80%81%E5%B7%AE%E5%88%86%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;23&#x2F;%E5%89%8D%E7%BC%80%E5%92%8C%E3%80%81%E5%B7%AE%E5%88%86%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;23&#x2F;%E5%89%8D%E7%BC%80%E5%92%8C%E3%80%81%E5%B7%AE%E5%88%86%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82&#x2F;index.html</a></li> -->
     <li><strong>版权声明：</strong>本博客所有文章均采用 
       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
@@ -204,12 +338,12 @@
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/KMP/" rel="tag">KMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" rel="tag">前缀和</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/2021/04/23/%E5%89%8D%E7%BC%80%E5%92%8C%E3%80%81%E5%B7%AE%E5%88%86%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82/"><i class="iconfont iconleft"></i>前缀和、差分约束、快速幂</a>
-    <a href="/2021/04/18/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口算法<i class="iconfont iconright"></i></a>
+    <a></a>
+    <a href="/2021/04/19/kmp%E7%AE%97%E6%B3%95/">KMP算法<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -222,7 +356,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-text">一、前缀和</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F"><span class="toc-text">二、差分约束</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="toc-text">区间操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">三、快速幂（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E6%A8%A1%E8%BF%90%E7%AE%97%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">取模运算的性质</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">四、矩阵快速幂</span></a></li></ol>
   </aside>
 
         
