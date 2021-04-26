@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>前缀和、差分约束、快速幂 - lybbor&#39;s blog</title>
+  <title>前缀和、差分约束、快速幂、矩阵快速幂 - lybbor&#39;s blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -135,7 +135,7 @@
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
       
     </div>
-    <div class="center">前缀和、差分约束、快速幂</div>
+    <div class="center">前缀和、差分约束、快速幂、矩阵快速幂</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -178,11 +178,11 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/article/IMG_0568.JPG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">前缀和、差分约束、快速幂</h1>
+    <h1 class="head-title">前缀和、差分约束、快速幂、矩阵快速幂</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 23, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1158</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2082</span>
     </div>
   </div>
 </section>
@@ -299,7 +299,7 @@
 <p>D[x]+=A;D[y+1]-=A;</p>
 </blockquote>
 <h1 id="三、快速幂（重点）"><a href="#三、快速幂（重点）" class="headerlink" title="三、快速幂（重点）"></a>三、快速幂（重点）</h1><blockquote>
-<p>我觉得很无敌哈，很天才。<br>用于解决(a^b)%c</p>
+<p>我觉得很无敌哈，很天才，其实就是二分的思想。<br>用于解决(a^b)%c</p>
 </blockquote>
 <h2 id="取模运算的性质"><a href="#取模运算的性质" class="headerlink" title="取模运算的性质"></a>取模运算的性质</h2><p><strong>(a * b )%p=( a%p * b%p )%p</strong></p>
 <p>设a = p*k1 + q1;<br>b = p*k2 + q2;</p>
@@ -323,7 +323,15 @@
 <blockquote>
 <p>a=(a*a)%c<br>b/=2</p>
 </blockquote>
-<h1 id="四、矩阵快速幂"><a href="#四、矩阵快速幂" class="headerlink" title="四、矩阵快速幂"></a>四、矩阵快速幂</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function">ll <span class="hljs-title">fast_</span><span class="hljs-params">(ll a,ll b ,ll c)</span></span>&#123;<br>    ll ans=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(b)&#123;<br>        <span class="hljs-keyword">if</span>(b&amp;<span class="hljs-number">1</span>)&#123;<br>            ans=(ans*a)%c;<br>        &#125;<br>        a=(a*a)%c;<br>        b&gt;&gt;=<span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    ll a,b,c;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;请输入a,b,c：&quot;</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;a&gt;&gt;b&gt;&gt;c;<br>    <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;ans=&quot;</span>&lt;&lt;fast_(a,b,c)&lt;&lt;<span class="hljs-built_in">endl</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="例题-Leetcode-50-Pow-x-n"><a href="#例题-Leetcode-50-Pow-x-n" class="headerlink" title="例题 Leetcode 50.Pow(x, n)"></a>例题 Leetcode 50.Pow(x, n)</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/powx-n/%22%E7%82%B9%E5%87%BB%E8%BF%9B%E5%85%A5%E9%A2%98%E7%9B%AE%22">点击进入题目</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> tmp=<span class="hljs-built_in">abs</span>(n);<br>        <span class="hljs-keyword">double</span> ans=<span class="hljs-number">1.00</span>;<br>        <span class="hljs-keyword">while</span>(tmp)&#123;<br>            <span class="hljs-keyword">if</span>(tmp&amp;<span class="hljs-number">1</span>)&#123;<br>                ans=ans*x;<br>            &#125;<br>            x=x*x;<br>            tmp=tmp/<span class="hljs-number">2</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(n&lt;<span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>/ans;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、矩阵快速幂"><a href="#四、矩阵快速幂" class="headerlink" title="四、矩阵快速幂"></a>四、矩阵快速幂</h1><blockquote>
+<p>有了pow函数,我觉得没必要了。</p>
+</blockquote>
       </section>
       <section class="extra">
         
@@ -356,7 +364,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-text">一、前缀和</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F"><span class="toc-text">二、差分约束</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="toc-text">区间操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">三、快速幂（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E6%A8%A1%E8%BF%90%E7%AE%97%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">取模运算的性质</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">四、矩阵快速幂</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-text">一、前缀和</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F"><span class="toc-text">二、差分约束</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="toc-text">区间操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">三、快速幂（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E6%A8%A1%E8%BF%90%E7%AE%97%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">取模运算的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-Leetcode-50-Pow-x-n"><span class="toc-text">例题 Leetcode 50.Pow(x, n)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">四、矩阵快速幂</span></a></li></ol>
   </aside>
 
         
